@@ -1,0 +1,89 @@
+table FactSurveyResponse
+	lineageTag: 20d82352-b75c-4f2a-9b7f-52d3ffd0bbd4
+
+	column SurveyResponseKey
+		dataType: int64
+		formatString: 0
+		lineageTag: bfa757a3-a1f4-421d-ab45-63ce0a5e1e95
+		summarizeBy: count
+		sourceColumn: SurveyResponseKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ca5c30e-8097-4d36-be67-c0af75d6272c
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d20729b-c3dd-42c4-919b-c6967aae28b0
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4118e266-0dd7-423a-a41d-e14eb41d0e4a
+		summarizeBy: count
+		sourceColumn: ProductCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishProductCategoryName
+		dataType: string
+		lineageTag: a1e90a73-307c-4ba6-bcc7-558bd3153bba
+		summarizeBy: none
+		sourceColumn: EnglishProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0344bab4-ff7a-4318-9e4e-eb498963096a
+		summarizeBy: count
+		sourceColumn: ProductSubcategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishProductSubcategoryName
+		dataType: string
+		lineageTag: 83f432c9-884a-4b47-b87d-ea61f96c22d2
+		summarizeBy: none
+		sourceColumn: EnglishProductSubcategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dc275d21-b2d0-431e-bb6e-755e9bc50493
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 11cf4dcb-3df0-4dea-8cef-5888965c200b
+			defaultHierarchy: LocalDateTable_216d9629-ce15-4f15-9f6d-79717a425289.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactSurveyResponse = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost", "AdventureWorksDW2025"),
+				    dbo_FactSurveyResponse = Source{[Schema="dbo",Item="FactSurveyResponse"]}[Data]
+				in
+				    dbo_FactSurveyResponse
+
+	annotation PBI_ResultType = Table
+

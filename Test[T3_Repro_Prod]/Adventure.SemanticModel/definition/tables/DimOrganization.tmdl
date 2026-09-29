@@ -1,0 +1,57 @@
+table DimOrganization
+	lineageTag: e5a312f9-4085-4fa9-923b-ecdbf8956e02
+
+	column OrganizationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ed6d4679-7b64-4532-8327-dc6318523752
+		summarizeBy: none
+		sourceColumn: OrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentOrganizationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: da676752-53f1-4d9c-bb83-9bdb87eab923
+		summarizeBy: count
+		sourceColumn: ParentOrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PercentageOfOwnership
+		dataType: string
+		lineageTag: b2b71552-ccf8-415a-bc06-4ed466f4d2cf
+		summarizeBy: none
+		sourceColumn: PercentageOfOwnership
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationName
+		dataType: string
+		lineageTag: 7e46005f-66c5-4273-ba19-cf34f9dffa4c
+		summarizeBy: none
+		sourceColumn: OrganizationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 82b86184-6f08-4b45-bb99-dab6e8ecd55a
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimOrganization = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost", "AdventureWorksDW2025"),
+				    dbo_DimOrganization = Source{[Schema="dbo",Item="DimOrganization"]}[Data]
+				in
+				    dbo_DimOrganization
+
+	annotation PBI_ResultType = Table
+

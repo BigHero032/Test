@@ -1,0 +1,37 @@
+table DimCurrency
+	lineageTag: 87bb5f18-3117-4f78-83fd-6670d3a8bcb8
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d55febc1-d31f-4be9-93e3-c6b874e0175e
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyAlternateKey
+		dataType: string
+		lineageTag: 73f5559f-8fab-4d20-aee3-10365e5b1070
+		summarizeBy: none
+		sourceColumn: CurrencyAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyName
+		dataType: string
+		lineageTag: eb38b190-b6c0-4785-a416-04e826327db1
+		summarizeBy: none
+		sourceColumn: CurrencyName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCurrency = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost", "AdventureWorksDW2025"),
+				    dbo_DimCurrency = Source{[Schema="dbo",Item="DimCurrency"]}[Data]
+				in
+				    dbo_DimCurrency
+

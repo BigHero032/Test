@@ -1,0 +1,40 @@
+table DimDepartmentGroup
+	lineageTag: 0c848586-8b71-4717-ba22-2ec18db94d68
+
+	column DepartmentGroupKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e581f637-6029-4efe-a774-50a5170d673d
+		summarizeBy: none
+		sourceColumn: DepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentDepartmentGroupKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 669f84b4-a2b4-4c33-afbe-de2d413faffd
+		summarizeBy: none
+		sourceColumn: ParentDepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentGroupName
+		dataType: string
+		lineageTag: 84644e6b-c2f6-41ca-9b6f-32fe7dbe393d
+		summarizeBy: none
+		sourceColumn: DepartmentGroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDepartmentGroup = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost", "AdventureWorksDW2025"),
+				    dbo_DimDepartmentGroup = Source{[Schema="dbo",Item="DimDepartmentGroup"]}[Data]
+				in
+				    dbo_DimDepartmentGroup
+
+	annotation PBI_ResultType = Table
+

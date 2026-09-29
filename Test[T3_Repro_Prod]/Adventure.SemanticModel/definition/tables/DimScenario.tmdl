@@ -1,0 +1,31 @@
+table DimScenario
+	lineageTag: c6331fdc-68d6-4a71-b9f8-bb3a5bfb83f0
+
+	column ScenarioKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 62363e44-45ac-41fa-9f5c-85fb2c33e17e
+		summarizeBy: none
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioName
+		dataType: string
+		lineageTag: 0f2a5dbd-f858-4b0c-ab9a-77e8415aa65b
+		summarizeBy: none
+		sourceColumn: ScenarioName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimScenario = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost", "AdventureWorksDW2025"),
+				    dbo_DimScenario = Source{[Schema="dbo",Item="DimScenario"]}[Data]
+				in
+				    dbo_DimScenario
+
+	annotation PBI_ResultType = Table
+

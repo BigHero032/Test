@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "321675d4d88a62bd104c",
   "position": {
-    "x": 9.72644376899696,
+    "x": 9.6000535717275213,
     "y": 0,
     "z": 0,
-    "height": 719.75683890577511,
-    "width": 494.10334346504561,
+    "height": 720.004017879564,
+    "width": 504.00281251569481,
     "tabOrder": 0
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "Customer"
                     }
                   },
-                  "Property": "Country-Region"
+                  "Property": "Customer ID"
                 }
               },
-              "queryRef": "Customer.Country-Region",
-              "nativeQueryRef": "Country-Region",
+              "queryRef": "Customer.Customer ID",
+              "nativeQueryRef": "Customer ID",
               "active": true
             }
           ]
@@ -85,20 +85,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "6be0b021662a87577eab",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Customer"
-              }
-            },
-            "Property": "Country-Region"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "bc634380705783acb02a",
         "field": {
           "Aggregation": {
@@ -116,6 +102,20 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "aa4cdeacd7b25bde893b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Customer"
+              }
+            },
+            "Property": "Customer ID"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

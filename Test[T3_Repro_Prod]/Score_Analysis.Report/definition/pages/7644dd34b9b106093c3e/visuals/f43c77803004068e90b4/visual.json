@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "f43c77803004068e90b4",
+  "position": {
+    "x": 9.9506032877156052,
+    "y": 83.585067616811088,
+    "z": 2000,
+    "height": 101.49615353469918,
+    "width": 718.43355737306672,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textSlicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "apvidyuth_scores"
+                    }
+                  },
+                  "Property": "hall_ticket_no"
+                }
+              },
+              "queryRef": "apvidyuth_scores.hall_ticket_no",
+              "nativeQueryRef": "Hall Ticket No",
+              "displayName": "Hall Ticket No"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "slicerSettings": [
+        {
+          "properties": {
+            "multiselect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

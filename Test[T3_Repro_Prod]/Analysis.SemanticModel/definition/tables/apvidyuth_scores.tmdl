@@ -1,0 +1,75 @@
+table apvidyuth_scores
+	lineageTag: 8d430896-c1fa-44bc-b1fb-8ce123c589af
+	sourceLineageTag: [dbo].[apvidyuth_scores]
+
+	measure 'Candidate Count' = ```
+			
+			    COUNTROWS ( 'apvidyuth_scores' )
+			```
+		formatString: 0
+		lineageTag: 90571690-2019-479a-84ac-ab6caa7b8f6b
+
+	column s_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d65e9ef-abf6-4b9a-93e7-4530a838afdc
+		sourceLineageTag: s_no
+		summarizeBy: sum
+		sourceColumn: s_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column hall_ticket_no
+		dataType: string
+		lineageTag: c530929e-9c1f-41c1-9179-a8fbde43a270
+		sourceLineageTag: hall_ticket_no
+		summarizeBy: none
+		sourceColumn: hall_ticket_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column candidate_name
+		dataType: string
+		lineageTag: f65789ca-6339-4efb-a048-62cc3750ef92
+		sourceLineageTag: candidate_name
+		summarizeBy: none
+		sourceColumn: candidate_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column score
+		dataType: double
+		lineageTag: 5b0072d7-fb72-4d61-9e25-35b9f7ef14db
+		sourceLineageTag: score
+		summarizeBy: sum
+		sourceColumn: score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Score Range' = ```
+			
+			    VAR _Score = 'apvidyuth_scores'[score]
+			    VAR _LowerBound =
+			      INT ( _Score / 10 ) * 10        // 0,10,20,...
+			    VAR _UpperBound =
+			      _LowerBound + 9                 // 9,19,29,...
+			    RETURN
+			      FORMAT ( _LowerBound, "0" ) & " - " & FORMAT ( _UpperBound, "0" )
+			```
+		lineageTag: c4c923b2-ec19-4a08-aad1-082dbd3041cc
+		summarizeBy: none
+		expressionContext: userContext
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition apvidyuth_scores = entity
+		mode: directLake
+		source
+			entityName: apvidyuth_scores
+			schemaName: dbo
+			expressionSource: 'DirectLake - AP'
+

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "4318e840a0a0414e072b",
+  "position": {
+    "x": 756.245849866386,
+    "y": 85.5751882743542,
+    "z": 5000,
+    "height": 101.49615353469918,
+    "width": 688.58174750991986,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textSlicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "apvidyuth_scores"
+                    }
+                  },
+                  "Property": "candidate_name"
+                }
+              },
+              "queryRef": "apvidyuth_scores.candidate_name",
+              "nativeQueryRef": "Candidate Name",
+              "displayName": "Candidate Name"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
